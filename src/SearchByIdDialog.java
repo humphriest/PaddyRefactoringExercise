@@ -10,12 +10,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SearchByIdDialog extends JDialog implements ActionListener {
-	EmployeeDetails parent;
-	JButton search, cancel;
-	JTextField searchField;
+class SearchByIdDialog extends JDialog implements ActionListener {
+	private EmployeeDetails parent;
+	private JButton search, cancel;
+	private JTextField searchField;
 	// constructor for SearchByIdDialog 
-	public SearchByIdDialog(EmployeeDetails parent) {
+	SearchByIdDialog(EmployeeDetails parent) {
 		setTitle("Search by Surname");
 		setModal(true);
 		this.parent = parent;
@@ -25,14 +25,14 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 		setContentPane(scrollPane);
 
 		getRootPane().setDefaultButton(search);
-		
+
 		setSize(500, 190);
 		setLocation(350, 250);
 		setVisible(true);
 	}// end SearchByIdDialog
-	
+
 	// initialize search container
-	public Container searchPane() {
+	Container searchPane() {
 		JPanel searchPanel = new JPanel(new GridLayout(3, 1));
 		JPanel textPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
@@ -46,11 +46,11 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 		textPanel.add(searchField = new JTextField(20));
 		searchField.setFont(this.parent.font1);
 		searchField.setDocument(new JTextFieldLimit(20));
-		
+
 		buttonPanel.add(search = new JButton("Search"));
 		search.addActionListener(this);
 		search.requestFocus();
-		
+
 		buttonPanel.add(cancel = new JButton("Cancel"));
 		cancel.addActionListener(this);
 
