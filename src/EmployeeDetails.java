@@ -333,7 +333,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			currentByteStart = application.getFirst();
 			// assign current Employee to first record in file
 			currentEmployee = application.readRecords(currentByteStart);
-			application.closeReadFile();// close file for reading
+			application.closeFile();// close file for reading
 			// if first record is inactive look for next record
 			if (currentEmployee.getEmployeeId() == 0)
 				nextRecord();// look for next record
@@ -357,7 +357,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				// assign current Employee to previous record in file
 				currentEmployee = application.readRecords(currentByteStart);
 			} // end while
-			application.closeReadFile();// close file for reading
+			application.closeFile();// close file for reading
 		}
 	}// end previousRecord
 
@@ -378,7 +378,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				// assign current Employee to next record in file
 				currentEmployee = application.readRecords(currentByteStart);
 			} // end while
-			application.closeReadFile();// close file for reading
+			application.closeFile();// close file for reading
 		} // end if
 	}// end nextRecord
 
@@ -392,7 +392,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			currentByteStart = application.getLast();
 			// assign current Employee to first record in file
 			currentEmployee = application.readRecords(currentByteStart);
-			application.closeReadFile();// close file for reading
+			application.closeFile();// close file for reading
 			// if last record is inactive look for previous record
 			if (currentEmployee.getEmployeeId() == 0)
 				previousRecord();// look for previous record
@@ -518,7 +518,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		application.openWriteFile(file.getAbsolutePath());
 		// write into a file
 		currentByteStart = application.addRecords(newEmployee);
-		application.closeWriteFile();// close file for writing
+		application.closeFile();// close file for writing
 	}// end addRecord
 
 	// delete (make inactive - empty) record from file
@@ -533,7 +533,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				application.openWriteFile(file.getAbsolutePath());
 				// delete (make inactive - empty) record in file proper position
 				application.deleteRecords(currentByteStart);
-				application.closeWriteFile();// close file for writing
+				application.closeFile();// close file for writing
 				// if any active record in file display next record
 				if (isSomeoneToDisplay()) {
 					nextRecord();// look for next record
@@ -597,7 +597,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		application.openReadFile(file.getAbsolutePath());
 		// check if any of records in file is active - ID is not 0
 		someoneToDisplay = application.isSomeoneToDisplay();
-		application.closeReadFile();// close file for reading
+		application.closeFile();// close file for reading
 		// if no records found clear all text fields and display message
 		if (!someoneToDisplay) {
 			currentEmployee = null;
@@ -620,15 +620,15 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// check for correct PPS format based on assignment description
 		if (pps.length() == 8 || pps.length() == 9) {
 			if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1))
-					&& Character.isDigit(pps.charAt(2))	&& Character.isDigit(pps.charAt(3)) 
-					&& Character.isDigit(pps.charAt(4))	&& Character.isDigit(pps.charAt(5)) 
+					&& Character.isDigit(pps.charAt(2))	&& Character.isDigit(pps.charAt(3))
+					&& Character.isDigit(pps.charAt(4))	&& Character.isDigit(pps.charAt(5))
 					&& Character.isDigit(pps.charAt(6))	&& Character.isLetter(pps.charAt(7))
 					&& (pps.length() == 8 || Character.isLetter(pps.charAt(8)))) {
 				// open file for reading
 				application.openReadFile(file.getAbsolutePath());
 				// look in file is PPS already in use
 				ppsExist = application.isPpsExist(pps, currentByte);
-				application.closeReadFile();// close file for reading
+				application.closeFile();// close file for reading
 			} // end if
 			else
 				ppsExist = true;
@@ -790,7 +790,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			application.openReadFile(file.getAbsolutePath());
 			firstRecord();// look for first record
 			displayRecords(currentEmployee);
-			application.closeReadFile();// close file for reading
+			application.closeFile();// close file for reading
 		} // end if
 	}// end openFile
 
@@ -817,7 +817,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 						// write changes to file for corresponding Employee
 						// record
 						application.changeRecords(currentEmployee, currentByteStart);
-						application.closeWriteFile();// close file for writing
+						application.closeFile();// close file for writing
 					} // end if
 				} // end if
 			} // end if
@@ -839,7 +839,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			currentEmployee = getChangedDetails();
 			// write changes to file for corresponding Employee record
 			application.changeRecords(currentEmployee, currentByteStart);
-			application.closeWriteFile();// close file for writing
+			application.closeFile();// close file for writing
 			changesMade = false;// state that all changes has bee saved
 		} // end if
 		displayRecords(currentEmployee);

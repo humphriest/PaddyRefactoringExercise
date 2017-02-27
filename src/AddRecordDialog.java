@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddRecordDialog extends JDialog implements ActionListener {
-	JTextField idField, ppsField, surnameField, firstNameField, salaryField;
-	JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
-	JButton save, cancel;
-	EmployeeDetails parent;
+class AddRecordDialog extends JDialog implements ActionListener {
+	private JTextField idField, ppsField, surnameField, firstNameField, salaryField;
+	private JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
+	private JButton save, cancel;
+	private EmployeeDetails parent;
 	// constructor for add record dialog
-	public AddRecordDialog(EmployeeDetails parent) {
+	AddRecordDialog(EmployeeDetails parent) {
 		setTitle("Add Record");
 		setModal(true);
 		this.parent = parent;
@@ -29,7 +29,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	}// end AddRecordDialog
 
 	// initialize dialog container
-	public Container dialogPane() {
+	private Container dialogPane() {
 		JPanel empDetails, buttonPanel;
 		empDetails = new JPanel(new MigLayout());
 		buttonPanel = new JPanel();
@@ -89,7 +89,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	}
 
 	// add record to file
-	public void addRecord() {
+	private void addRecord() {
 		boolean fullTime = false;
 		Employee theEmployee;
 
@@ -105,7 +105,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	}
 
 	// check for input in text fields
-	public boolean checkInput() {
+	private boolean checkInput() {
 		boolean valid = true;
 		// if any of inputs are in wrong format, colour text field and display message
 		if (ppsField.getText().equals("")) {
@@ -152,7 +152,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	}// end checkInput
 
 	// set text field to white colour
-	public void setToWhite() {
+	private void setToWhite() {
 		ppsField.setBackground(Color.WHITE);
 		surnameField.setBackground(Color.WHITE);
 		firstNameField.setBackground(Color.WHITE);

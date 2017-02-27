@@ -1,9 +1,3 @@
-/*
- * 
- * This is the summary dialog for displaying all Employee details
- * 
- * */
-
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -15,12 +9,12 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.Vector;
 
-public class EmployeeSummaryDialog extends JDialog implements ActionListener {
+class EmployeeSummaryDialog extends JDialog implements ActionListener {
 	// vector with all Employees details
-	Vector<Object> allEmployees;
-	JButton back;
+	private Vector<Object> allEmployees;
+	private JButton back;
 	
-	public EmployeeSummaryDialog(Vector<Object> allEmployees) {
+	EmployeeSummaryDialog(Vector<Object> allEmployees) {
 		setTitle("Employee Summary");
 		setModal(true);
 		this.allEmployees = allEmployees;
@@ -36,7 +30,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 
 	}
 	// initialise container
-	public Container summaryPane() {
+	private Container summaryPane() {
 		JPanel summaryDialog = new JPanel(new MigLayout());
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JTable employeeTable;
@@ -45,7 +39,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		// column left alignment 
 		DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
-		Vector<String> header = new Vector<String>();
+		Vector<String> header = new Vector<>();
 		// header names
 		String[] headerName = { "ID", "PPS Number", "Surname", "First Name", "Gender", "Department", "Salary",
 				"Full Time" };
@@ -54,10 +48,11 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		leftRenderer.setHorizontalAlignment(JLabel.LEFT);
 		// add headers
-		for (int i = 0; i < headerName.length; i++) {
-			header.addElement(headerName[i]);
-		}// end for
-		// construnct table and choose table model for each column
+
+        for (String aHeaderName : headerName) {
+            header.addElement(aHeaderName);
+        }
+        // construct table and choose table model for each column
 		tableModel = new DefaultTableModel(this.allEmployees, header) {
 			public Class getColumnClass(int c) {
 				switch (c) {
@@ -108,7 +103,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 
 	}
 	// format for salary column
-	static class DecimalFormatRenderer extends DefaultTableCellRenderer {
+	private static class DecimalFormatRenderer extends DefaultTableCellRenderer {
 		 private static final DecimalFormat format = new DecimalFormat(
 		 "\u20ac ###,###,##0.00" );
 
