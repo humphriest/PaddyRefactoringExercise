@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="miglayout-4.0 (1)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../RefactoringExercise/miglayout-4.0 (1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/../RefactoringExercise/miglayout-4.0-swing (1).jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
