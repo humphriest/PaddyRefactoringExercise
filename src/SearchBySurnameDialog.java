@@ -14,7 +14,6 @@ class SearchBySurnameDialog extends JDialog implements ActionListener{
 	private final EmployeeDetails parent;
 	private JButton search, cancel;
 	private JTextField searchField;
-	// constructor for search by surname dialog
 	SearchBySurnameDialog(EmployeeDetails parent) {
 		setTitle("Search by Surname");
 		setModal(true);
@@ -29,9 +28,8 @@ class SearchBySurnameDialog extends JDialog implements ActionListener{
 		setSize(500, 190);
 		setLocation(350, 250);
 		setVisible(true);
-	}// end SearchBySurnameDialog
-	
-	// initialize search container
+	}
+
 	private Container searchPane() {
 		JPanel searchPanel = new JPanel(new GridLayout(3,1));
 		JPanel textPanel = new JPanel();
@@ -58,19 +56,15 @@ class SearchBySurnameDialog extends JDialog implements ActionListener{
 		searchPanel.add(buttonPanel);
 
 		return searchPanel;
-	}// end searchPane
+	}
 
-	// action listener for save and cancel button
 	public void actionPerformed(ActionEvent e) {
-		// if option search, search for Employee
 		if(e.getSource() == search){
 			this.parent.searchBySurnameField.setText(searchField.getText());
-			// search Employee by surname
 			this.parent.searchEmployeeBySurname();
-			dispose();// dispose dialog
-		}// end if
-		// else dispose dialog
+			dispose();
+		}
 		else if(e.getSource() == cancel)
-			dispose();// dispose dialog
-	}// end actionPerformed
-}// end class SearchBySurnameDialog
+			dispose();
+	}
+}

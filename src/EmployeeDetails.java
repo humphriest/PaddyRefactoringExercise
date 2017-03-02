@@ -249,35 +249,36 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 
 		searchByIdField.setText("");
 		searchBySurnameField.setText("");
-		assert thisEmployee != null;
-		if (thisEmployee.getEmployeeId() == 0) {
-			return;
-		} else {
-			while (!found && countGender < gender.length - 1) {
-				if (Character.toString(thisEmployee.getGender()).equalsIgnoreCase(gender[countGender]))
-					found = true;
-				else
-					countGender++;
-			}
-			found = false;
-			while (!found && countDep < department.length - 1) {
-				if (thisEmployee.getDepartment().trim().equalsIgnoreCase(department[countDep]))
-					found = true;
-				else
-					countDep++;
-			}
-			idField.setText(Integer.toString(thisEmployee.getEmployeeId()));
-			ppsField.setText(thisEmployee.getPps().trim());
-			surnameField.setText(thisEmployee.getSurname().trim());
-			firstNameField.setText(thisEmployee.getFirstName());
-			genderCombo.setSelectedIndex(countGender);
-			departmentCombo.setSelectedIndex(countDep);
-			salaryField.setText(format.format(thisEmployee.getSalary()));
-			if (thisEmployee.getFullTime())
-				fullTimeCombo.setSelectedIndex(1);
-			else
-				fullTimeCombo.setSelectedIndex(2);
-		}
+		if (thisEmployee  == null) {
+            System.out.println("Error");
+        } else if(thisEmployee.getEmployeeId() == 0) {
+            System.out.println("Error");
+        } else {
+                while (!found && countGender < gender.length - 1) {
+                    if (Character.toString(thisEmployee.getGender()).equalsIgnoreCase(gender[countGender]))
+                        found = true;
+                    else
+                        countGender++;
+                }
+                found = false;
+                while (!found && countDep < department.length - 1) {
+                    if (thisEmployee.getDepartment().trim().equalsIgnoreCase(department[countDep]))
+                        found = true;
+                    else
+                        countDep++;
+                }
+                idField.setText(Integer.toString(thisEmployee.getEmployeeId()));
+                ppsField.setText(thisEmployee.getPps().trim());
+                surnameField.setText(thisEmployee.getSurname().trim());
+                firstNameField.setText(thisEmployee.getFirstName());
+                genderCombo.setSelectedIndex(countGender);
+                departmentCombo.setSelectedIndex(countDep);
+                salaryField.setText(format.format(thisEmployee.getSalary()));
+                if (thisEmployee.getFullTime())
+                    fullTimeCombo.setSelectedIndex(1);
+                else
+                    fullTimeCombo.setSelectedIndex(2);
+        }
 		change = false;
 	}
 
