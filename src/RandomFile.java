@@ -51,7 +51,6 @@ class RandomFile {
 
 	// Add records to file
 	long addRecords(Employee employeeToAdd) {
-		Employee newEmployee = employeeToAdd;
 		long currentRecordStart = 0;
 
 		// object to be written to file
@@ -59,9 +58,9 @@ class RandomFile {
 
 		try // output values to file
 		{
-			record = new RandomAccessEmployeeRecord(newEmployee.getEmployeeId(), newEmployee.getPps(),
-					newEmployee.getSurname(), newEmployee.getFirstName(), newEmployee.getGender(),
-					newEmployee.getDepartment(), newEmployee.getSalary(), newEmployee.getFullTime());
+			record = new RandomAccessEmployeeRecord(employeeToAdd.getEmployeeId(), employeeToAdd.getPps(),
+					employeeToAdd.getSurname(), employeeToAdd.getFirstName(), employeeToAdd.getGender(),
+					employeeToAdd.getDepartment(), employeeToAdd.getSalary(), employeeToAdd.getFullTime());
 
 			output.seek(output.length());// Look for proper position
 			record.write(output);// Write object to file
@@ -194,7 +193,7 @@ class RandomFile {
 
 	// Get object from file in specified position
 	Employee readRecords(long byteToStart) {
-		Employee thisEmp = null;
+		Employee thisEmp;
 		RandomAccessEmployeeRecord record = new RandomAccessEmployeeRecord();
 
 		try {// try to read file and get record

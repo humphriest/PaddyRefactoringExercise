@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class SearchBySurnameDialog extends JDialog implements ActionListener{
-	private EmployeeDetails parent;
+	private final EmployeeDetails parent;
 	private JButton search, cancel;
 	private JTextField searchField;
 	// constructor for search by surname dialog
@@ -32,7 +32,7 @@ class SearchBySurnameDialog extends JDialog implements ActionListener{
 	}// end SearchBySurnameDialog
 	
 	// initialize search container
-	Container searchPane() {
+	private Container searchPane() {
 		JPanel searchPanel = new JPanel(new GridLayout(3,1));
 		JPanel textPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();

@@ -101,7 +101,7 @@ class Employee{
 
     // Display Employee details
     public String toString() {
-        String bool = "";
+        String bool;
         if (fullTime)
             bool = "Yes";
         else
