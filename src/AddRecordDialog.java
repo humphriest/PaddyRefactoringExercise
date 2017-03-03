@@ -9,6 +9,7 @@ class AddRecordDialog extends JDialog implements ActionListener {
 	private JTextField idField, ppsField, surnameField, firstNameField, salaryField;
 	private JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
 	private JButton save, cancel;
+
 	private final EmployeeDetails parent;
 	AddRecordDialog(EmployeeDetails parent) {
 		setTitle("Add Record");
@@ -27,7 +28,7 @@ class AddRecordDialog extends JDialog implements ActionListener {
 		setVisible(true);
 	}
 
-	private Container dialogPane() {
+	 Container dialogPane() {
 		JPanel empDetails, buttonPanel;
 		empDetails = new JPanel(new MigLayout());
 		buttonPanel = new JPanel();
@@ -103,49 +104,50 @@ class AddRecordDialog extends JDialog implements ActionListener {
 
 	private boolean checkInput() {
 		boolean valid = true;
+		final Color bgColor = new Color(255,150, 150);
 		if (ppsField.getText().equals("")) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(bgColor);
 			valid = false;
 		}
 		if (this.parent.correctPps(this.ppsField.getText().trim(), -1)) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(bgColor);
 			valid = false;
 		}
 		if (surnameField.getText().isEmpty()) {
-			surnameField.setBackground(new Color(255, 150, 150));
+			surnameField.setBackground(bgColor);
 			valid = false;
 		}
 		if (firstNameField.getText().isEmpty()) {
-			firstNameField.setBackground(new Color(255, 150, 150));
+			firstNameField.setBackground(bgColor);
 			valid = false;
 		}
 		if (genderCombo.getSelectedIndex() == 0) {
-			genderCombo.setBackground(new Color(255, 150, 150));
+			genderCombo.setBackground(bgColor);
 			valid = false;
 		}
 		if (departmentCombo.getSelectedIndex() == 0) {
-			departmentCombo.setBackground(new Color(255, 150, 150));
+			departmentCombo.setBackground(bgColor);
 			valid = false;
 		}
 		try {
 			Double v =Double.parseDouble(salaryField.getText());
 			if (v < 0) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(bgColor);
 				valid = false;
 			}
 		}
 		catch (NumberFormatException num) {
-			salaryField.setBackground(new Color(255, 150, 150));
+			salaryField.setBackground(bgColor);
 			valid = false;
 		}
 		if (fullTimeCombo.getSelectedIndex() == 0) {
-			fullTimeCombo.setBackground(new Color(255, 150, 150));
+			fullTimeCombo.setBackground(bgColor);
 			valid = false;
 		}
 		return valid;
 	}
 
-	private void setToWhite() {
+	    void setToWhite() {
 		ppsField.setBackground(Color.WHITE);
 		surnameField.setBackground(Color.WHITE);
 		firstNameField.setBackground(Color.WHITE);

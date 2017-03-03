@@ -37,8 +37,8 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 	final String[] gender = { "", "M", "F" };
 	final String[] department = { "", "Administration", "Production", "Transport", "Management" };
 	final String[] fullTime = { "", "Yes", "No" };
-    final String x = "growx, pushx";
-    final String w = "growx, pushx, wrap";
+    private final String x = "growx, pushx";
+    private final String w = "growx, pushx, wrap";
 
 	private JMenuBar menuBar() {
 		JMenuBar menuBar = new JMenuBar();
@@ -542,9 +542,10 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 	private boolean checkFileName(File fileName) {
 		boolean checkFile = false;
 		int length = fileName.toString().length();
+		final String fn = fileName.toString();
 
-		if (fileName.toString().charAt(length - 4) == '.' && fileName.toString().charAt(length - 3) == 'd'
-				&& fileName.toString().charAt(length - 2) == 'a' && fileName.toString().charAt(length - 1) == 't')
+		if (fn.charAt(length - 4) == '.' && fn.charAt(length - 3) == 'd'
+				&& fn.charAt(length - 2) == 'a' && fn.charAt(length - 1) == 't')
 			checkFile = true;
 		return checkFile;
 	}
@@ -565,45 +566,46 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 
 	private boolean checkInput() {
 		boolean valid = true;
+		final Color bgColor = new Color(255,150, 150);
 		if (ppsField.isEditable() && ppsField.getText().trim().isEmpty()) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(bgColor);
 			valid = false;
 		}
 		if (ppsField.isEditable() && correctPps(ppsField.getText().trim(), currentByteStart)) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(bgColor);
 			valid = false;
 		}
 		if (surnameField.isEditable() && surnameField.getText().trim().isEmpty()) {
-			surnameField.setBackground(new Color(255, 150, 150));
+			surnameField.setBackground(bgColor);
 			valid = false;
 		}
 		if (firstNameField.isEditable() && firstNameField.getText().trim().isEmpty()) {
-			firstNameField.setBackground(new Color(255, 150, 150));
+			firstNameField.setBackground(bgColor);
 			valid = false;
 		}
 		if (genderCombo.getSelectedIndex() == 0 && genderCombo.isEnabled()) {
-			genderCombo.setBackground(new Color(255, 150, 150));
+			genderCombo.setBackground(bgColor);
 			valid = false;
 		}
 		if (departmentCombo.getSelectedIndex() == 0 && departmentCombo.isEnabled()) {
-			departmentCombo.setBackground(new Color(255, 150, 150));
+			departmentCombo.setBackground(bgColor);
 			valid = false;
 		}
 		try {
 			final double v = Double.parseDouble(salaryField.getText());
 			if (v < 0) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(bgColor);
 				valid = false;
 			}
 		}
 		catch (NumberFormatException num) {
 			if (salaryField.isEditable()) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(bgColor);
 				valid = false;
 			}
 		}
 		if (fullTimeCombo.getSelectedIndex() == 0 && fullTimeCombo.isEnabled()) {
-			fullTimeCombo.setBackground(new Color(255, 150, 150));
+			fullTimeCombo.setBackground(bgColor);
 			valid = false;
 		}
 		if (!valid)
@@ -614,14 +616,15 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 	}
 
 	private void setToWhite() {
-		ppsField.setBackground(UIManager.getColor("TextField.background"));
-		surnameField.setBackground(UIManager.getColor("TextField.background"));
-		firstNameField.setBackground(UIManager.getColor("TextField.background"));
-		salaryField.setBackground(UIManager.getColor("TextField.background"));
-		genderCombo.setBackground(UIManager.getColor("TextField.background"));
-		departmentCombo.setBackground(UIManager.getColor("TextField.background"));
-		fullTimeCombo.setBackground(UIManager.getColor("TextField.background"));
+		ppsField.setBackground(Color.WHITE);
+		surnameField.setBackground(Color.WHITE);
+		firstNameField.setBackground(Color.WHITE);
+		salaryField.setBackground(Color.WHITE);
+		genderCombo.setBackground(Color.WHITE);
+		departmentCombo.setBackground(Color.WHITE);
+		fullTimeCombo.setBackground(Color.WHITE);
 	}
+
 	public void setEnabled(boolean booleanValue) {
 		boolean search;
 		search = !booleanValue;
@@ -639,6 +642,7 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 		searchId.setEnabled(search);
 		searchSurname.setEnabled(search);
 	}
+
 	private void openFile() {
 		final JFileChooser fc = new JFileChooser();
 		fc.setDialogTitle("Open");
@@ -869,9 +873,9 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 		JPanel dialog = new JPanel(new MigLayout());
 
 		setJMenuBar(menuBar());
-		dialog.add(searchPanel(), "width 400:400:400, growx, pushx");
+		dialog.add(searchPanel(), "width 400:400:400,"+x);
 		dialog.add(navigPanel(), "width 150:150:150, wrap");
-		dialog.add(buttonPanel(), "growx, pushx, span 2,wrap");
+		dialog.add(buttonPanel(), x+", span 2,wrap");
 		dialog.add(detailsPanel(), "gap top 30, gap left 150, center");
 
 		JScrollPane scrollPane = new JScrollPane(dialog);
